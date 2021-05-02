@@ -29,3 +29,16 @@ Some methods to manipulate meshes:
 - `mesh.rotation.x/y/z` rotates the mesh along an axis in radians
 
 Objects can be added to a `new THREE.Group()` so that the entire group is manipulated rather than applying the same transformations to each object individually.
+
+## Basic Animation
+
+A simple way to make a Three.js animation is to make an infinite loop function that manipulates the object or camera and then rerenders the scene using `window.requestAnimationFrame()`.
+
+The problem is that different computers have different framerates which makes the speed at which something rerenders inconsistent among computers.
+
+Possible solutions:
+
+- use the `Date` function in JS to regulate the time at which it rerenders
+- use the `THREE.Clock()` function
+
+There is also another library called GSAP which can be used to animate objects since it works with Three.js.
