@@ -42,3 +42,21 @@ Possible solutions:
 - use the `THREE.Clock()` function
 
 There is also another library called GSAP which can be used to animate objects since it works with Three.js.
+
+## Cameras
+
+There are different types of cameras:
+
+1. **ArrayCamera** - used to render things like split screens
+2. **StereoCamera** - used to render things like VR
+3. **CubeCamera** - used to render environment maps for reflection or shadow map
+4. **OrthographicCamera** - renders scene without perspective
+5. **PerspectiveCamera** - similar to real-life camera with perspective
+
+The PerspectiveCamera has 4 different parameters:
+
+1. **Field of view** - the vertical amplitude angle in degrees; small angle creates long scope effect while wide angle is similar to fish eye effect; typical values are 45-75
+2. **Aspect ratio** - can typically use the canvas width and height which should be saved in an object since you use it multiple times
+3. **Near (3) and far (4)** - how close and how far the camera can see (range); try not to use too close and too far otherwise you'll get z-fighting where objects render into each other; typically use 0.1 and 100
+
+The OrthographicCamera is different from the PerspectiveCamera and has 6 different parameters: `left`, `right`, `top`, `bottom`, `near`, and `far`. The first four indicate how far the camera can see in those directions.
