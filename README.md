@@ -60,3 +60,22 @@ The PerspectiveCamera has 4 different parameters:
 3. **Near (3) and far (4)** - how close and how far the camera can see (range); try not to use too close and too far otherwise you'll get z-fighting where objects render into each other; typically use 0.1 and 100
 
 The OrthographicCamera is different from the PerspectiveCamera and has 6 different parameters: `left`, `right`, `top`, `bottom`, `near`, and `far`. The first four indicate how far the camera can see in those directions.
+
+### Controls
+
+There are some pre-made controls:
+
+- **DeviceOrientationControls** - used to retrieve device orientation if rotation is allowed
+- **FlyControls** - lets you rotate all 3 axes, go forward, and go backwards
+- **FirstPersonControls** - fixed up axis like a flying bird view where the bird can't do a barrel roll
+- **PointerLockControls** - hides the cursor and keeps it centered, allowing you make FPS games
+- **OrbitControls** - left click = rotate, right click = panning, mosue wheel = zooming
+- **TrackballControls** - similar to OrbitControls but has no limit
+- **TransformControls** - doesn't touch the camera, attaches to object and helps to move the object
+- **DragControls** - doesn't touch the camera, moves objects on a plane facing the camera by dragging and dropping them
+
+#### OrbitControls
+
+- can use `target` to change the postion of where the camera is targeting for x, y, z
+  ex. `controls.target.y = 2`
+- damping will smooth the animation by adding acceleration and friction which can be enabled by `controls.enableDamping = true`
