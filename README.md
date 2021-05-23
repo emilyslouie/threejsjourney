@@ -79,3 +79,29 @@ There are some pre-made controls:
 - can use `target` to change the postion of where the camera is targeting for x, y, z
   ex. `controls.target.y = 2`
 - damping will smooth the animation by adding acceleration and friction which can be enabled by `controls.enableDamping = true`
+
+## Geometries
+
+There is the `BoxGeometry` which has been used up until now, but what is a geometry? Geometries are made up of vertices and faces. These are used to make meshes and can be used to make particles.
+
+There are a lot of built in geometries in Three.js which start with the following and end in `Geometry`:
+
+- `Box` - box
+- `Plane` - rectangle plane
+- `Circle` - disk or part of a disk
+- `Cone` - cone or part of a cone
+- `Ring` - flat ring or portion of flat circle
+- `Torus` - donut type ring
+- `TorusKnow` - knot thing
+- `Dodecahedron` - 12 faced sphere
+- `Octahedron` - 8 faced sphere
+- `Tetrahedron` - 4 faced sphere
+- `Icosahedron` - sphere made of triangles with the same size
+- `Sphere` - basically a sphere with the quads
+- `Shape` - shape based on a path
+- `Tube` - tube following a path
+- `Extrude` - making a extrusion based on a path
+- `Lathe` - creates a vase
+- `Text` - creates 3D text
+
+As for the parameters of these built in geometries, there is the `width`, `height`, `depth`, `widthSegments`, `heightSegments`, and `depthSegments`. It works on spheres to change the segment parameters so that it is more smooth. By default it is 1, so if you set it to more, then there will be more segments and appear more smooth.
