@@ -47,17 +47,17 @@ There is also another library called GSAP which can be used to animate objects s
 
 There are different types of cameras:
 
-1. **ArrayCamera** - used to render things like split screens
-2. **StereoCamera** - used to render things like VR
-3. **CubeCamera** - used to render environment maps for reflection or shadow map
-4. **OrthographicCamera** - renders scene without perspective
-5. **PerspectiveCamera** - similar to real-life camera with perspective
+1. `ArrayCamera` - used to render things like split screens
+2. `StereoCamera` - used to render things like VR
+3. `CubeCamera` - used to render environment maps for reflection or shadow map
+4. `OrthographicCamera` - renders scene without perspective
+5. `PerspectiveCamera` - similar to real-life camera with perspective
 
 The PerspectiveCamera has 4 different parameters:
 
-1. **Field of view** - the vertical amplitude angle in degrees; small angle creates long scope effect while wide angle is similar to fish eye effect; typical values are 45-75
-2. **Aspect ratio** - can typically use the canvas width and height which should be saved in an object since you use it multiple times
-3. **Near (3) and far (4)** - how close and how far the camera can see (range); try not to use too close and too far otherwise you'll get z-fighting where objects render into each other; typically use 0.1 and 100
+1. `Field of view` - the vertical amplitude angle in degrees; small angle creates long scope effect while wide angle is similar to fish eye effect; typical values are 45-75
+2. `Aspect ratio` - can typically use the canvas width and height which should be saved in an object since you use it multiple times
+3. `Near (3) and far (4)` - how close and how far the camera can see (range); try not to use too close and too far otherwise you'll get z-fighting where objects render into each other; typically use 0.1 and 100
 
 The OrthographicCamera is different from the PerspectiveCamera and has 6 different parameters: `left`, `right`, `top`, `bottom`, `near`, and `far`. The first four indicate how far the camera can see in those directions.
 
@@ -65,14 +65,14 @@ The OrthographicCamera is different from the PerspectiveCamera and has 6 differe
 
 There are some pre-made controls:
 
-- **DeviceOrientationControls** - used to retrieve device orientation if rotation is allowed
-- **FlyControls** - lets you rotate all 3 axes, go forward, and go backwards
-- **FirstPersonControls** - fixed up axis like a flying bird view where the bird can't do a barrel roll
-- **PointerLockControls** - hides the cursor and keeps it centered, allowing you make FPS games
-- **OrbitControls** - left click = rotate, right click = panning, mosue wheel = zooming
-- **TrackballControls** - similar to OrbitControls but has no limit
-- **TransformControls** - doesn't touch the camera, attaches to object and helps to move the object
-- **DragControls** - doesn't touch the camera, moves objects on a plane facing the camera by dragging and dropping them
+- `DeviceOrientationControls` - used to retrieve device orientation if rotation is allowed
+- `FlyControls` - lets you rotate all 3 axes, go forward, and go backwards
+- `FirstPersonControls` - fixed up axis like a flying bird view where the bird can't do a barrel roll
+- `PointerLockControls` - hides the cursor and keeps it centered, allowing you make FPS games
+- `OrbitControls` - left click = rotate, right click = panning, mosue wheel = zooming
+- `TrackballControls` - similar to OrbitControls but has no limit
+- `TransformControls` - doesn't touch the camera, attaches to object and helps to move the object
+- `DragControls` - doesn't touch the camera, moves objects on a plane facing the camera by dragging and dropping them
 
 #### OrbitControls
 
@@ -105,3 +105,5 @@ There are a lot of built in geometries in Three.js which start with the followin
 - `Text` - creates 3D text
 
 As for the parameters of these built in geometries, there is the `width`, `height`, `depth`, `widthSegments`, `heightSegments`, and `depthSegments`. It works on spheres to change the segment parameters so that it is more smooth. By default it is 1, so if you set it to more, then there will be more segments and appear more smooth.
+
+We can use `BufferGeometry` to make our own shapes. This involves creating an array with the locations of the points, and the number of points used per shape in the `BufferAttribute` since you can make multiple of the same shape using the array and methods.
