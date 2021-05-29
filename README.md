@@ -107,3 +107,51 @@ There are a lot of built in geometries in Three.js which start with the followin
 As for the parameters of these built in geometries, there is the `width`, `height`, `depth`, `widthSegments`, `heightSegments`, and `depthSegments`. It works on spheres to change the segment parameters so that it is more smooth. By default it is 1, so if you set it to more, then there will be more segments and appear more smooth.
 
 We can use `BufferGeometry` to make our own shapes. This involves creating an array with the locations of the points, and the number of points used per shape in the `BufferAttribute` since you can make multiple of the same shape using the array and methods.
+
+## Textures
+
+- images that cover the surface of geometries
+
+There are different types of textures:
+
+- **Color** which takes the pixels of the texture and applies it to the geometry
+- **Alpha** which takes a grayscale image where while is visible and black is not
+- **Height** which is a grayscale image that moves the vertices to create some relief
+- **Normal** which will add small details but not move the vertices
+- **Ambient occlusion** which is a grayscale image that will fake shadow on surface crevices
+- **Metalness** which is a grayscale image that will show metallic parts as white and non-metallic as black helping to create a reflection
+- **Roughness** is a grayscale image that goes with metalness and helps to dissipate the light
+
+**PBR** (physically based rendering) principles is one of the regrouping techniques that follow real life situations to get more realistic renderings and results.
+
+- use the `.TextureLoader()` to load the image, it also has progress function for when the loading is happening and an error funnction if something goes wrong
+
+- use `.LoadingManager()` to help you manage loading a number of textures into your project
+
+- use **UV Unwrapping** when we need to wrap a texture around a weird shaped object; if we have to create our own geometry, we have to also do the UV unwrapping ourselves through the 3D software
+
+**Mipmapping** is a technique that consists of creating half a smaller version of a texture again and again until you get a 1x1 texture. There are two filter algorithms: minification and magnification filters. Only use the mipmaps for the minFiler property and you don't need it if you are using `THREE.NearestFilter`, so you can deactivate it using `colorTexture.generateMipmaps = false`.
+
+**Minification filter** is when the pixels of texture are smaller than the pixels of the render, so texture is too big for the surface and has a couple of different filters:
+
+- `THREE.NearestFilter`
+- `THREE.LinearFilter`
+- `THREE.NearestMipmapNearestFilter`
+- `THREE.NearestMipmapLinearFilter`
+- `THREE.LinearMipmapNearestFilter`
+- `THREE.LinearMipmapLinearFilter`
+
+Using the `THREE.NearestFilter` results in some weird effects happening called moiré patterns which render crazy things.
+
+**Magnification filter** is similar to minification filter but it makes it beeger so that the texture is too small for the surface to cover, and thus is more blurry. This one has two filters:
+
+- `THREE.NearestFilter` - kinda like the Minecraft pixelated effect, gets the best performance out of all the options
+- `THREE.LinearFilter`
+
+With textures, need to keep in mind the **weight**, **size**, and **data**. For weight, the images need to be downloaded upon visiting the site, so need to make it as compressed as possible. For size, reduce the pixel size as much as possible and needs to be a power of 2. For data, textures support transparency, and need to use pngs for lossless compression.
+
+Some places to find textures include:
+
+- [poliigon.com](https://www.poliigon.com)
+- [3dtextures.me](https://3dtextures.me)
+- [arroway-textures.ch](https://www.arroway-textures.ch)
