@@ -155,3 +155,36 @@ Some places to find textures include:
 - [poliigon.com](https://www.poliigon.com)
 - [3dtextures.me](https://3dtextures.me)
 - [arroway-textures.ch](https://www.arroway-textures.ch)
+
+## Materials
+
+- used to put color on each visible picture of a geometry
+
+`MeshBasicMaterial` is the most basic material and using the map property will let you add a texture while the color property lets you add a color class
+
+- one can combine the `color` and `map` properties to tint the texture with a colour
+- the `wireframe` property lets you see it as a geometry
+- one can also change the opacity of a material, first set `transparent = true` and then set `opacity = #`
+- `alphaMap` is a grayscale texture that controls the opacity across the surface (black: fully transparent; white: fully opaque)
+- `side` lets you choose which side is visible (either front, back or double sides)
+
+`MeshNormalMaterial` lets you see the rainbowy colours in the normal relative's orientation to the camera; with this you can also use `flatShading` which flattens the faces
+
+- cool portfolio using the normals is [https://www.ilithya.rocks](https://www.ilithya.rocks)
+
+`MeshMatcapMaterial` is an illuminated looking material that is performative
+`MeshDepthMaterial` will colour the geometry in white if it is close to the camera and black if it is far
+
+There are some that need to use a light source in order to render properly:
+
+- `MeshLambertMaterial` is a material that renders based on lighting in the scene
+- `MeshPhongMaterial` uses the same things as the previous but with less strange patterns and can change `shininess` and `specular` properties
+- `MeshToonMaterial` makes it look like it came out of a cartoon and you can use the `gradientMap` property to declare colours for the shadow and for the light in which we need to ensure we use a large enough gradient texture
+
+`MeshStandardMaterial` uses the standard physically based rendering principles and you can change the `metalness` and `roughness` properties
+
+- can use `aoMap` property to add shadows where the textures are dark by giving the UV coordinates
+- the `displacementMap` properties will move the vertices to create true relief and need to make sure we have enough displacement and more subdivisions by changing the scale
+- `normalMap` will fake the normal orientation and add details on the surface regardless of the subdivision; there is also the `metalnessMap` and `roughnessMap`
+
+An **environment** map is an image of what's happening in the surrounding scene and is used to add reflection or refraction to the objects, makes it similar to a mirror or shiny object. A good resource for environment maps are [HDRIHaven](https://hdrihaven.com) and you need to convert it to a cube map using https://matheowis.github.io/HDRI-to-CubeMap/.
