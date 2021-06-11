@@ -188,3 +188,11 @@ There are some that need to use a light source in order to render properly:
 - `normalMap` will fake the normal orientation and add details on the surface regardless of the subdivision; there is also the `metalnessMap` and `roughnessMap`
 
 An **environment** map is an image of what's happening in the surrounding scene and is used to add reflection or refraction to the objects, makes it similar to a mirror or shiny object. A good resource for environment maps are [HDRIHaven](https://hdrihaven.com) and you need to convert it to a cube map using https://matheowis.github.io/HDRI-to-CubeMap/.
+
+## Fonts
+
+In three.js we can make 3D text. First, we need to make a .json of the font face and then add it to the project. Then, we need to load it in. Afterwards, we can use the same functions on objects to change the materials.
+
+We can use `textGeometry.center()` to centre the text.
+
+A good resource for getting a matcap is https://github.com/nidorx/matcaps.
