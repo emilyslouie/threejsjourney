@@ -196,3 +196,24 @@ In three.js we can make 3D text. First, we need to make a .json of the font face
 We can use `textGeometry.center()` to centre the text.
 
 A good resource for getting a matcap is https://github.com/nidorx/matcaps.
+
+## Lighting
+
+`AmbientLight` applies omnidirectional lighting on all the geometries of the scene, taking parameters such as `color` and `intensity`.
+
+`DirectionalLight` has a sun effect with sun rays going in parallel.
+
+`HemisphereLight` is similar to `AmbientLight` but has a different colour coming from the sky and from the ground. This makes it so that there are two colour parameters and an intensity one.
+
+`PointLight` is like a lighter where the light is very small and is uniform. You can change the fade distance and how quickly it fades using the `distance` and `decay` properties.
+
+`RectAreaLight` is similar to large rectangle lights and is similar to directional lighting and diffuse light. There are the `color`, `intensity` parameters, but also `width` of the rectangle and `height`.
+
+`SpotLight` is like a flashlight and has the first two parameters and `distance`, `angle`, `penumbra`, and `decay` parameters.
+
+Some performace considerations:
+**Minimal cost** - AmbientLight, HemisphereLight
+
+**Moderate cost** - DirectionalLight, PointLight
+
+**High cost** - SpotLight, RectAreaLight
