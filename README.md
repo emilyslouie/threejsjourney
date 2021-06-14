@@ -217,3 +217,15 @@ Some performace considerations:
 **Moderate cost** - DirectionalLight, PointLight
 
 **High cost** - SpotLight, RectAreaLight
+
+Baking is when you put the light into the texture, but you can't move the lights.
+
+## Shadows
+
+With lights we also ened shadows. The back part of objects that are dark are called **core shadows**. The **drop shadows** are the shadows created on other objects.
+
+When doing a render, Three.js will do a render for all lights that cast shadows. These will simulate the lights seens as if it were a camera. When the light renders, `MeshDepthMaterial` replaces all mesh materials. It's then stored as textures and named shadow maps.
+
+To set it up, you have to enable the `shadowMap`, set up `castShadow` and `receiveShadow` on the objects that have shadows, and then make the light cast the shadow with `castShadow`.
+
+The problem with baking the shadow into a texture is that it is not dynamic.
