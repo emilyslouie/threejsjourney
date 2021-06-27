@@ -55,7 +55,7 @@ house.add(walls);
 // Roof
 const roof = new THREE.Mesh(
   new THREE.ConeGeometry(3.5, 1, 4),
-  new THREE.MeshStandardMaterial({ color: "#b35f45" })
+  new THREE.MeshStandardMaterial({ color: "#733420" })
 );
 roof.rotation.y = Math.PI * 0.25;
 roof.position.y = 2.5 + 0.5;
@@ -94,13 +94,16 @@ door.position.z = 2 + 0.001;
 house.add(door);
 
 // Door light
-const doorLight = new THREE.PointLight("#ff7d46", 1, 7);
+const doorLight = new THREE.PointLight("#9c450b", 1, 7);
 doorLight.position.set(0, 2.2, 2.7);
 house.add(doorLight);
+doorLight.shadow.mapSize.width = 256;
+doorLight.shadow.mapSize.height = 256;
+doorLight.shadow.camera.far = 7;
 
 // Bushes
 const bushGeometry = new THREE.SphereGeometry(1, 16, 16);
-const bushMaterial = new THREE.MeshStandardMaterial({ color: "#89c854" });
+const bushMaterial = new THREE.MeshStandardMaterial({ color: "#805905" });
 
 const bush1 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush1.scale.set(0.5, 0.5, 0.5);
@@ -124,10 +127,13 @@ scene.add(house);
 
 // Graves
 const graves = new THREE.Group();
+const graveTopGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.2);
 const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
 const graveMaterial = new THREE.MeshStandardMaterial({ color: "#b2b6b1" });
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 70; i++) {
+  // const gravestone = new THREE.Group();
+
   const angle = Math.random() * Math.PI * 2; // Random angle
   const radius = 3 + Math.random() * 6; // Random radius
   const x = Math.cos(angle) * radius; // Get the x position using cosinus
@@ -135,19 +141,24 @@ for (let i = 0; i < 50; i++) {
 
   // Create the mesh
   const grave = new THREE.Mesh(graveGeometry, graveMaterial);
+  const graveTop = new THREE.Mesh(graveTopGeometry, graveMaterial);
 
   // Position
   grave.position.set(x, 0.3, z);
+  graveTop.position.set(x + 0.05, 0.65, z);
 
   // Rotation
   grave.rotation.z = (Math.random() - 0.5) * 0.4;
   grave.rotation.y = (Math.random() - 0.5) * 0.4;
 
+  graveTop.rotation.z = grave.rotation.z + 0.65;
+  graveTop.rotation.y = grave.rotation.y;
+
   // Lighting
   grave.castShadow = true;
 
   // Add to the graves container
-  graves.add(grave);
+  graves.add(grave, graveTop);
 }
 scene.add(graves);
 
@@ -195,19 +206,28 @@ scene.add(floor);
 /**
  * Ghosts
  */
-const ghost1 = new THREE.PointLight("#ff00ff", 2, 3);
+const ghost1 = new THREE.PointLight("#169c62", 2, 3);
 scene.add(ghost1);
+ghost1.shadow.mapSize.width = 256;
+ghost1.shadow.mapSize.height = 256;
+ghost1.shadow.camera.far = 7;
 
-const ghost2 = new THREE.PointLight("#00ffff", 2, 3);
+const ghost2 = new THREE.PointLight("#169c62", 2, 3);
 scene.add(ghost2);
+ghost2.shadow.mapSize.width = 256;
+ghost2.shadow.mapSize.height = 256;
+ghost2.shadow.camera.far = 7;
 
-const ghost3 = new THREE.PointLight("#ffff00", 2, 3);
+const ghost3 = new THREE.PointLight("#169c62", 2, 3);
 scene.add(ghost3);
+ghost3.shadow.mapSize.width = 256;
+ghost3.shadow.mapSize.height = 256;
+ghost3.shadow.camera.far = 7;
 
 /**
  * Fog
  */
-const fog = new THREE.Fog("#262837", 1, 15);
+const fog = new THREE.Fog("#1e1f2b", 1, 12);
 scene.fog = fog;
 
 /**
@@ -226,6 +246,10 @@ gui.add(moonLight.position, "x").min(-5).max(5).step(0.001);
 gui.add(moonLight.position, "y").min(-5).max(5).step(0.001);
 gui.add(moonLight.position, "z").min(-5).max(5).step(0.001);
 scene.add(moonLight);
+
+moonLight.shadow.mapSize.width = 256;
+moonLight.shadow.mapSize.height = 256;
+moonLight.shadow.camera.far = 15;
 
 moonLight.castShadow = true;
 doorLight.castShadow = true;
@@ -290,6 +314,7 @@ renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setClearColor("#262837");
 renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 /**
  * Animate
  */
