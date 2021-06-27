@@ -125,7 +125,7 @@ house.add(bush1, bush2, bush3, bush4);
 
 scene.add(house);
 
-// Graves
+// Graves - slightly scuffed and slightly mismatched top and bottom
 const graves = new THREE.Group();
 const graveTopGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.2);
 const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
@@ -161,6 +161,63 @@ for (let i = 0; i < 70; i++) {
   graves.add(grave, graveTop);
 }
 scene.add(graves);
+
+// // Graves - top and bottom matches exactly
+// const graves = new THREE.Group();
+// scene.add(graves);
+
+// const graveThickness = 0.2;
+// const graveRectW = 0.5;
+// const graveRectH = 0.6;
+// const graveRectGeo = new THREE.BoxGeometry(
+//   graveRectW,
+//   graveRectH,
+//   graveThickness
+// );
+// const graveRectMat = new THREE.MeshStandardMaterial({ color: "gray" });
+
+// const graveTopWH = Math.cos(Math.PI / 4) * graveRectW;
+// const graveTopGeo = new THREE.BoxGeometry(
+//   graveTopWH,
+//   graveTopWH,
+//   graveThickness
+// );
+// const graveTopMat = new THREE.MeshStandardMaterial({ color: "gray" });
+
+// function getRandom(min, max) {
+//   return Math.random() * (max - min) + min;
+// }
+
+// for (let i = 0; i < 70; i++) {
+//   const grave = new THREE.Group();
+
+//   const graveRect = new THREE.Mesh(graveRectGeo, graveRectMat);
+//   graveRect.position.y = graveRectH / 2;
+//   graveRect.receiveShadow = true;
+//   graveRect.castShadow = true;
+
+//   const graveTop = new THREE.Mesh(graveTopGeo, graveTopMat);
+//   graveTop.position.y = graveRectH;
+//   graveTop.rotation.z = Math.PI * 0.25;
+//   graveTop.receiveShadow = true;
+//   graveTop.castShadow = true;
+//   grave.add(graveTop, graveRect);
+
+//   const posRand = getRandom(0.2, Math.PI * 2 - 0.2);
+//   grave.position.x = Math.cos(posRand) * getRandom(3.5, 10);
+//   grave.position.y = -0.1;
+//   grave.position.z = Math.sin(posRand) * getRandom(3.1, 10);
+
+//   const scaleRand = getRandom(0.8, 1);
+//   grave.scale.set(scaleRand, scaleRand, scaleRand);
+
+//   const rotRand = getRandom(-0.2, 0.2);
+//   grave.rotation.x = rotRand;
+//   grave.rotation.y = Math.PI / 2;
+//   grave.rotation.z = rotRand;
+
+//   graves.add(grave);
+// }
 
 // Floor
 const grassColorTexture = textureLoader.load("/textures/grass/color.jpg");
