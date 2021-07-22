@@ -229,3 +229,19 @@ When doing a render, Three.js will do a render for all lights that cast shadows.
 To set it up, you have to enable the `shadowMap`, set up `castShadow` and `receiveShadow` on the objects that have shadows, and then make the light cast the shadow with `castShadow`.
 
 The problem with baking the shadow into a texture is that it is not dynamic.
+
+## Particles
+
+Parts to make a particle: `BufferGeometry`, `PointsMaterial` and `Points`
+
+`PointsMaterial` is a special type of material to create particles. It lets us use `size`, and `sizeAttenuation` to specify if distant particles should be smaller than close particles.
+
+`alphaTest` is a value between 0 and 1 that lets WebGL know when and when not to render pixel based on transparency.
+
+`depthTest` lets you test to see if what's being drawn is closer than what's already drawn. Doesn't work well when there are other objects in the scene though.
+
+A `depth buffer` is the depth of what's being drawn is stored.
+
+`depthWrite` lets us tell WebGL to not write particles in that depth buffer. And works ok in our case with particles and other objects in the scene.
+
+`blending` is a property that lets us not only to draw to a pixel, but to add the color of that pixel to the color of the pixel already drawn. So in our case, it lets us see the halo effect on top of another halo, making it super saturated in the places that they overlap. This effect reduces the performance though, so make sure to use less particles.
