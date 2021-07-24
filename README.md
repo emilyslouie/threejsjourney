@@ -245,3 +245,16 @@ A `depth buffer` is the depth of what's being drawn is stored.
 `depthWrite` lets us tell WebGL to not write particles in that depth buffer. And works ok in our case with particles and other objects in the scene.
 
 `blending` is a property that lets us not only to draw to a pixel, but to add the color of that pixel to the color of the pixel already drawn. So in our case, it lets us see the halo effect on top of another halo, making it super saturated in the places that they overlap. This effect reduces the performance though, so make sure to use less particles.
+
+## Raycaster
+
+Shoots a ray in a direction to test to see which objects intersect with the ray. The two main methods are `intersectObject` and `intersectObjects`.
+
+Each item of that returned array contains much useful information:
+
+- distance: the distance between the origin of the ray and the collision point.
+- face: what face of the geometry was hit by the ray.
+- faceIndex: the index of that face.
+- object: what object is concerned by the collision.
+- point: a Vector3 of the exact position in 3D space of the collision.
+- uv: the UV coordinates in that geometry.
