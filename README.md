@@ -258,3 +258,22 @@ Each item of that returned array contains much useful information:
 - object: what object is concerned by the collision.
 - point: a Vector3 of the exact position in 3D space of the collision.
 - uv: the UV coordinates in that geometry.
+
+Mouse events like `mouseEnter` and `mouseLeave` are not supported so we have to reproduce those methods if we want to use them.
+
+## Physics
+
+Some 3D physics libraries:
+
+- Ammo.js
+- Cannon.js
+- Oimo.js
+
+Some 2D physics libraries:
+
+- Matter.js
+- P2.js
+- Planck.js
+- Box2D.js
+
+To use Cannon.js, we make a world `const world = new CANNON.World();` and then we can set things like gravity. To update the World with the physics we have to use the `step(...)` function which can be explained further [here](https://gafferongames.com/post/fix_your_timestep/).
