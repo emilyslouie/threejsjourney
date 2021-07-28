@@ -277,3 +277,35 @@ Some 2D physics libraries:
 - Box2D.js
 
 To use Cannon.js, we make a world `const world = new CANNON.World();` and then we can set things like gravity. To update the World with the physics we have to use the `step(...)` function which can be explained further [here](https://gafferongames.com/post/fix_your_timestep/).
+
+Create shapes and bodies in Cannon.js. Then you can add `ContactMaterials` to change the material properties and help things bounce or have friction.
+
+There's some options to apply forces:
+
+- `applyForce`
+- `applyImpulse`
+- `applyLocalForce`
+- `applyLocalImpulse`
+
+To test collisions between objects, we can use a **broadphase** which is a rough sorting of the bodies before testing. This is check if two bodies are close enough to each other to warrant testing. There are 3 algorithms including:
+
+- `NaiveBroadPhase` (default) - every body against every other body
+- `GridBroadphase` - only tests bodies against other bodies in the same grid space
+- `SAPBroadphase` (recommended) - tests bodies on arbitrary axes during multiple stages
+
+Since all bodies get tested even if they're not moving, we can use a feature called **sleep** which means an object will not get tested if it is moving really slowly or not moving at all. Thus, the object won't get tested until it is hit with a lot of force through code or by another object. You just need to turn it on.
+
+We can listen to events that occur on a body. Some common events are `collide`, `sleep`, and `wakeup`.
+
+You can add constraints like `HingeConstraint`, `DistanceConstraint`, `LockConstraint`, and `PointToPointConstraint`.
+
+Works help to put a part of the code on a different thread so that you can spread the load to your CPU and not cause a single thread to be overloaded. This is a good example [here](https://schteppe.github.io/cannon.js/examples/worker.html).
+
+The real Cannon.js is not updated so we use cannon-es which is maintained here:
+
+- Git repository: https://github.com/pmndrs/cannon-es
+- NPM page: https://www.npmjs.com/package/cannon-es
+
+Ammo.js is another good choice if more features are needed. It's more popular and has more examples of Three.js. There are also more performance enhancing features and WebAssembly.
+
+Physijs is also another good choice since it has workers natively. It gets complicated quickly when adding more features though.
