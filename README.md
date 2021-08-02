@@ -222,7 +222,7 @@ Baking is when you put the light into the texture, but you can't move the lights
 
 ## Shadows
 
-With lights we also ened shadows. The back part of objects that are dark are called **core shadows**. The **drop shadows** are the shadows created on other objects.
+With lights we also need shadows. The back part of objects that are dark are called **core shadows**. The **drop shadows** are the shadows created on other objects.
 
 When doing a render, Three.js will do a render for all lights that cast shadows. These will simulate the lights seens as if it were a camera. When the light renders, `MeshDepthMaterial` replaces all mesh materials. It's then stored as textures and named shadow maps.
 
@@ -309,3 +309,21 @@ The real Cannon.js is not updated so we use cannon-es which is maintained here:
 Ammo.js is another good choice if more features are needed. It's more popular and has more examples of Three.js. There are also more performance enhancing features and WebAssembly.
 
 Physijs is also another good choice since it has workers natively. It gets complicated quickly when adding more features though.
+
+## Importing Models
+
+Common model formats:
+
+- OBJ
+- FBX
+- STL
+- PLY
+- COLLADA
+- 3DS
+- GLTF (very common)
+
+When looking at the `GLTF` format, it's good to use the glTF-default so that we can alter textures and lighting. If we only want one file per model and don't care about customization, glTF-Binary is good.
+
+Draco compression sounds like a good idea since the geometries are lighter, but we have to load numerous things in, and it takes time to decode a compressed file and can result in a short freeze at the start of the program.
+
+You can also load animations that come with the models using the animation mixer.
